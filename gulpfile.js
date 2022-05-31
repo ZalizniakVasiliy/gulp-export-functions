@@ -1,4 +1,4 @@
-const {parallel} = require('gulp');
+const {parallel, series} = require('gulp');
 
 const convertToJSON = (done) => {
     const obj = {
@@ -18,6 +18,7 @@ const filterArray = (done) => {
     done();
 }
 
+
 const sumElemsArr = (done) => {
     const arr = [-15, 0.5, 38, -4, 2, 14];
 
@@ -29,3 +30,4 @@ const sumElemsArr = (done) => {
 exports.default = parallel(convertToJSON, filterArray, sumElemsArr);
 exports.operationsWithArr = parallel(filterArray, sumElemsArr);
 exports.filteredArr = filterArray;
+exports.seriesTasks = series(convertToJSON, filterArray, sumElemsArr);
